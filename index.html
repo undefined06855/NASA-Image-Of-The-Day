@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+    <head>
+        <title>NASA Image of the day</title>
+
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+    </head>
+
+    <body>
+        <!--
+            IMAGE_OF_DAY:
+
+            Shows a random image each day, from https://api.nasa.gov/planetary/apod
+            using api_key=DEMO_KEY
+        -->
+
+        <div id="blur_bg"></div>
+
+        <div id="img_wrapper">
+            <img id="bg_hd" />
+        </div>
+
+
+        <div id="wrapper">
+            <div id="title">PLACEHOLDER_TITLE</div>
+            <div id="description">PLACEHOLDER_DECRIPTION</div>
+            <div id="date">23/12/2022 (PLACEHOLDER)</div>
+            <div id="copyright">PLACEHOLDER_COPYRIGHT</div>
+        </div>
+
+        <div id="error_text"></div>
+
+        <script src="./js/fetch.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>
