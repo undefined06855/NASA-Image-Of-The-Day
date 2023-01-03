@@ -89,8 +89,10 @@ html, body, #wrapper, #img_wrapper {
     transition: translate 1s ease-out, opacity 1s linear;
 }
 
-.hide ~ * {
-    cursor: none;
+#fullscreen_btn {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 #description.hide {
