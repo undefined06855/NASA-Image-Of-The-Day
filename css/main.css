@@ -20,6 +20,11 @@ html, body, #wrapper, #img_wrapper {
     align-items: center;
 }
 
+#img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 #blur_bg {
     position: fixed;
     top: 0;
@@ -40,10 +45,6 @@ html, body, #wrapper, #img_wrapper {
     z-index: 2;
 }
 
-#bg_hd {
-    aspect-ratio: 1 / 1;
-}
-
 #wrapper > * {
     margin: 15px;
 }
@@ -59,7 +60,7 @@ html, body, #wrapper, #img_wrapper {
 
 #description {
     position: absolute;
-    bottom: 1em;
+    bottom: calc(1em + 7.5px);
 
     text-align: center;
 }
@@ -76,6 +77,32 @@ html, body, #wrapper, #img_wrapper {
     bottom: 0;
 }
 
+#note {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    translate: -50% 0%;
+}
+
+#description, #title {
+    transition: translate 1s ease-out, opacity 1s linear;
+}
+
+.hide ~ * {
+    cursor: none;
+}
+
+#description.hide {
+    translate: 0 150%;
+    opacity: 0;
+}
+
+#title.hide {
+    translate: 0 -50px;
+    opacity: 0;
+}
+
 #error_text {
     z-index: 999;
     color: red;
@@ -87,4 +114,14 @@ html, body, #wrapper, #img_wrapper {
     translate: -50% -50%;
 
     text-align: center;
+}
+
+#mm-detect {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 99999;
 }
