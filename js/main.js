@@ -16,22 +16,44 @@ new Promise((resolve, reject) => {
 
     req.send()
 }).then(response => {
-    var hideTimeout;
+    var fullscreen = false
 
-    function resetClock()
-    {
-        hideTimeout && clearTimeout(hideTimeout)
-        document.getElementById("title").classList.remove("hide")
-        document.getElementById("description").classList.remove("hide")
+    document.getElementById("fullscreen_btn").addEventListener("click", () => {
+        if (fullscreen)
+        {
+            fullscreen = false
+            document.exitFullscreen()
+            
+            document.querySelector("i").classList.remove("fa-compress")
+            document.querySelector("i").classList.add("fa-expand")
 
-        hideTimeout = setTimeout(() => {
+            document.getElementById("title").classList.remove("hide")
+            document.getElementById("description").classList.remove("hide")
+        }
+        else
+        {
+            fullscreen = true
+            document.body.requestFullscreen();
+        
+            document.querySelector("i").classList.remove("fa-expand")
+            document.querySelector("i").classList.add("fa-compress")
+    
             document.getElementById("title").classList.add("hide")
             document.getElementById("description").classList.add("hide")
-        }, 5000)
-    }
-
-    document.body.addEventListener("mousemove", resetClock)
-    resetClock()
+    
+            document.body.addEventListener("fullscreenchange", () => {
+                if (!document.fullscreenElement)
+                {
+                    fullscreen = false
+                    document.querySelector("i").classList.remove("fa-compress")
+                    document.querySelector("i").classList.add("fa-expand")
+    
+                    document.getElementById("title").classList.remove("hide")
+                    document.getElementById("description").classList.remove("hide")
+                }
+            })
+        }
+    })
 
     const params = JSON.parse(response.params)
     console.log(`Remaining requests: ${response.headers.match(/[\n\r].*x-ratelimit-remaining: \s*([^\n\r]*)/)[1]} out of ${response.headers.match(/[\n\r].*x-ratelimit-limit: \s*([^\n\r]*)/)[1]}`)
